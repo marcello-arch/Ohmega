@@ -1,0 +1,256 @@
+#!/bin/python3
+"""
+Created on Tue Aug 13 14:36:05 2019
+@author: Guilherme Marcello
+"""
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+from tkinter.filedialog import askopenfilename
+from tkinter import scrolledtext, ttk, Tk, Label, Button 
+from PIL import ImageTk,Image
+import webbrowser 
+version = '5.3.1'
+author = 'Guilherme Marcello'
+contact = 'guilemosm@gmail.com'
+def web():
+    webbrowser.open("marcello-arch.blogspot.com")
+def sobre():
+    global img
+    novoecra = tk.Toplevel(ecra)
+    novoecra.tk.call('wm', 'iconphoto', novoecra._w, tk.PhotoImage(file='/usr/share/ohmega/R.gif'))
+    novoecra.resizable(0,0)
+    novoecra.maxsize(300,400)
+    novoecra.minsize(300,400)
+    novoecra.title('About Ohmega')
+    img = ImageTk.PhotoImage(Image.open('/usr/share/ohmega/ohm.png'))
+    imagem = Label(novoecra, image=img).pack()
+    versao = Label(novoecra, text="Version",font=("Arial Bold", 12)).pack()
+    versao2 = Label(novoecra, text=version).pack()
+    autor = Label(novoecra, text="Developer",font=("Arial Bold", 12)).pack()
+    autor2 = Label(novoecra, text=author).pack()
+    contacto = Label(novoecra, text="Contact",font=("Arial Bold", 12)).pack()
+    contacto2 = Label(novoecra, text=contact).pack()
+    espaco = Label(novoecra, text='\n \n \n').pack()
+    sair = Button(novoecra, text="Return", command=novoecra.destroy).pack()
+def introdu():
+    global introducao
+    ecra3 = tk.Toplevel(ecra)
+    ecra3.tk.call('wm', 'iconphoto', ecra3._w, tk.PhotoImage(file='/usr/share/ohmega/R.gif'))
+    ecra3.resizable(0,0)
+    ecra3.maxsize(300,365)
+    ecra3.minsize(300,365)
+    ecra3.title('Ohmega Introduction!')
+    introducao = ImageTk.PhotoImage(Image.open('/usr/share/ohmega/R5.png'))
+    i = tk.Text(ecra3)
+    intro = Label(ecra3, image=introducao).pack()
+    txt = Label(ecra3, text='Ohmega was created to calculate the value\n of a resistance given the coloration prese\n nted by its bands. The user must fill in t\n he blanks for the program to calculate. If \n you are unsure what the spaces are, how to\n choose and save them, access the Choosing c\n olors and Calculation options. Enjoy!', height=8).pack()
+    txt2 = Label(ecra3, text='').pack()
+    txt3 = Label(ecra3, text='').pack()
+    txt4 = Label(ecra3, text='').pack()
+    saida = Button(ecra3, text="Return", command= ecra3.destroy).pack()
+def gates():
+    global img_entradas
+    ecra4 = tk.Toplevel(ecra)
+    ecra4.tk.call('wm', 'iconphoto', ecra4._w, tk.PhotoImage(file='/usr/share/ohmega/R.gif'))
+    ecra4.resizable(0,0)
+    ecra4.maxsize(300,380)
+    ecra4.minsize(300,380)
+    ecra4.title('Choosing colors')
+    ecra4_txt1 = Label(ecra4, text='Welcome!\n The arrows in the figure below directs whe\n re the user should click to select colors.\n Be sure to confirm the option after each change!').pack()
+    img_entradas = ImageTk.PhotoImage(Image.open('/usr/share/ohmega/entrada2.png'))
+    entradas_img = Label(ecra4, image=img_entradas).pack()
+    ecra4_txt2 = Label(ecra4, text='').pack()
+    ecra4_txt3 = Label(ecra4, text='').pack()
+    ecra4_txt4 = Label(ecra4, text='').pack()
+    saida_gates = Button(ecra4, text="Return", command= ecra4.destroy).pack()
+def explica_calculos():
+    global img_calculos
+    ecra5 = tk.Toplevel(ecra)
+    ecra5.tk.call('wm', 'iconphoto', ecra5._w, tk.PhotoImage(file='/usr/share/ohmega/R.gif'))
+    ecra5.resizable(0,0)
+    ecra5.maxsize(300,340)
+    ecra5.minsize(300,340)
+    ecra5.title('Calculation')
+    ecra5_txt1 = Label(ecra5, text='Welcome! The figure below shows where the\n calculation function is triggered, enjoy!').pack()
+    img_calculos = ImageTk.PhotoImage(Image.open('/usr/share/ohmega/resultado2.png'))
+    calculos_img = Label(ecra5, image=img_calculos).pack()
+    ecra5_txt2 = Label(ecra5, text='').pack()
+    ecra5_txt3 = Label(ecra5, text='').pack()
+    ecra5_txt4 = Label(ecra5, text='').pack()
+    saida_calculo = Button(ecra5, text="Return", command= ecra5.destroy).pack()
+def cores():
+    global img_cores
+    ecra6 = tk.Toplevel(ecra)
+    ecra6.tk.call('wm', 'iconphoto', ecra6._w, tk.PhotoImage(file='/usr/share/ohmega/R.gif'))
+    ecra6.resizable(0,0)
+    ecra6.maxsize(300,700)
+    ecra6.minsize(300,700)
+    ecra6.title('Cores')
+    ecra6_txt1 = Label(ecra6, text='The figure below shows the color options.').pack()
+    img_cores = ImageTk.PhotoImage(Image.open('/usr/share/ohmega/cores2.png'))
+    cores_img = Label(ecra6, image=img_cores).pack()
+    ecra6_txt2 = Label(ecra6, text='').pack()
+    saida_cores = Button(ecra6, text="Return", command= ecra6.destroy).pack()
+ecra = tk.Tk()
+ecra.title('Ohmega')
+ecra.tk.call('wm', 'iconphoto', ecra._w, tk.PhotoImage(file='/usr/share/ohmega/R.gif'))
+ecra.resizable(0,0)
+ecra.maxsize(360,200)
+ecra.minsize(360,200)
+menu = Menu(ecra)
+ecra.config(menu=menu)
+geral_menu = Menu(menu)
+menu.add_cascade(label="General", menu=geral_menu)
+geral_menu.add_command(label="Website", command=web)
+geral_menu.add_separator()
+geral_menu.add_command(label="Exit", command=ecra.destroy)
+helpmenu = Menu(menu)
+menu.add_cascade(label="Help", menu=helpmenu)
+helpmenu.add_command(label="About", command=sobre)
+tabela_menu = Menu(menu)
+menu.add_cascade(label="Tutorial", menu=tabela_menu)
+tabela_menu.add_command(label="Ohmega Introduction", command=introdu)
+tabela_menu.add_command(label="Choosing colors", command=gates)
+tabela_menu.add_command(label="Calculation", command=explica_calculos)
+tabela_menu.add_command(label="Colors", command=cores)
+titulo = Label(ecra, text="Resistance Calculator",).grid(row=0,column=1)
+primeira = Label(ecra, text="First color",).grid(row=1,column=0)
+segunda = Label(ecra, text="Second color",).grid(row=2,column=0)
+terceira = Label(ecra, text="Third color",).grid(row=3,column=0)
+tolerancia = Label(ecra, text="Tolerance color",).grid(row=4,column=0)
+resultado = Label(ecra, text="Total:",).grid(row=5,column=0)
+texto = StringVar()
+texto.set('')
+def confirmar1():
+    global input1a
+    input1a = input1.get()
+def confirmar2():
+    global input2a
+    input2a = input2.get()
+def confirmar3():
+    global input3a
+    input3a = input3.get()
+def confirmar4():
+    global input4a
+    input4a = input4.get()
+def calcular():
+    global r
+    if input1a =='Black':
+        erste = '0'
+    elif input1a =='Brown':
+        erste = '1'
+    elif input1a == 'Red':
+        erste = '2'
+    elif input1a == 'Orange':
+        erste = '3'
+    elif input1a == 'Yellow':
+        erste = '4'
+    elif input1a == 'Green':
+        erste = '5'
+    elif input1a == 'Blue':
+        erste = '6'
+    elif input1a == 'Violet':
+        erste = '7'
+    elif input1a == 'Gray':
+        erste = '8'
+    elif input1a == 'White':
+        erste = '9' 
+    if input2a =='Black':
+        zweite = '0'
+    elif input2a =='Brown':
+        zweite = '1'
+    elif input2a == 'Red':
+        zweite = '2'
+    elif input2a == 'Orange':
+        zweite = '3'
+    elif input2a == 'Yellow':
+        zweite = '4'
+    elif input2a == 'Green':
+        zweite = '5'
+    elif input2a == 'Blue':
+        zweite = '6'
+    elif input2a == 'Violet':
+        zweite = '7'
+    elif input2a == 'Gray':
+        zweite = '8'
+    elif input2a == 'White':
+        zweite = '9' 
+    if input3a =='Black':
+        dritte = 1
+    elif input3a =='Brown':
+        dritte = 10
+    elif input3a == 'Red':
+        dritte = 100
+    elif input3a == 'Orange':
+        dritte = 1000
+    elif input3a == 'Yellow':
+        dritte = 10000
+    elif input3a == 'Green':
+        dritte = 100000
+    elif input3a == 'Blue':
+        dritte = 1000000
+    elif input3a == 'Violet':
+        dritte = 10000000
+    elif input3a == 'Gray':
+        dritte = 100000000
+    elif input3a == 'White':
+        dritte = 1000000000
+    elif input3a == 'Gold':
+        dritte = 0.1
+    elif input3a == 'Silver':
+        dritte = 0.01
+    if input4a == 'Brown':
+        vierte = 0.01
+    elif input4a == 'Red':
+        vierte = 0.02
+    elif input4a == 'Green':
+        vierte = 0.005
+    elif input4a == 'Blue':
+        vierte = 0.0025
+    elif input4a == 'Violet':
+        vierte = 0.001
+    elif input4a == 'Gray':
+        vierte = 0.0005
+    elif input4a == 'Gold':
+        vierte = 0.05
+    elif input4a == 'Silver':
+        vierte = 0.1
+    r = int(erste + zweite)*dritte
+    if r<1e3:
+        r2 = r
+        tole = r2*vierte
+        resposta = r2,'+-',tole,'Ω'
+    elif 1e3<=r<1e6:
+        r2 = r*0.001
+        tole = r2*vierte
+        resposta = r2,'+-',tole,'kΩ'
+    elif 1e6<=r<1e9:
+        r2 = r*1e-6
+        tole = r2*vierte
+        resposta = r2,'+-',tole,'MΩ'
+    else:
+        r2 = r*1e-9
+        tole = r2*vierte
+        resposta = r2,'+-',tole,'GΩ'       
+    texto.set(resposta)
+confirm1 = Button(ecra, text='confirm', command=confirmar1)
+confirm1.grid(row=1,column=2)
+confirm2 = Button(ecra, text='confirm', command=confirmar2)
+confirm2.grid(row=2,column=2)
+confirm3 = Button(ecra, text='confirm', command=confirmar3)
+confirm3.grid(row=3,column=2)
+confirm4 = Button(ecra, text='confirm', command=confirmar4)
+confirm4.grid(row=4,column=2)
+input1 = ttk.Combobox(ecra, values=['Black','Brown','Red','Orange','Yellow','Green','Blue','Violet','Gray','White'])
+input1.grid(row=1,column=1)
+input2 = ttk.Combobox(ecra, values=['Black','Brown','Red','Orange','Yellow','Green','Blue','Violet','Gray','White'])
+input2.grid(row=2,column=1)
+input3 = ttk.Combobox(ecra, values=['Black','Brown','Red','Orange','Yellow','Green','Blue','Violet','Gray','White','Gold','Silver'])
+input3.grid(row=3,column=1)
+input4 = ttk.Combobox(ecra, values=['Brown','Red','Green','Blue','Violet','Gray','Gold','Silver'])
+input4.grid(row=4,column=1)
+input5 = Label(ecra, textvariable=texto)
+input5.grid(row=5,column=1)
+calculo = Button(ecra, text ="Calculate", command=calcular).grid(row=6,column=1)
+ecra.mainloop()
